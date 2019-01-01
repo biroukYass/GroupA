@@ -9,15 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class FormActivity extends AppCompatActivity {
+
     private Button buttononsave;
-    private EditText editTextName;
+    private EditText editText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         buttononsave = findViewById(R.id.activity_form_button);
-        editTextName = findViewById(R.id.activity_form_edtedtext);
+        editText = findViewById(R.id.activity_form_edtedtext);
          buttononsave.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -26,10 +27,9 @@ public class FormActivity extends AppCompatActivity {
          });
     }
     private void save(){
-        String name = editTextName.getText().toString();
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("name",name);
-        setResult(RESULT_OK, resultIntent);
+        DataManager.getInstance().addName(editText.getText().toString());
+
         finish();
 
     }
